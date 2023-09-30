@@ -3,6 +3,7 @@
 ################################################################################################################################
 
 import os
+from datetime import datetime
 
 ################################################################################################################################
 # FUNZIONI
@@ -24,6 +25,13 @@ def fancy_print(s):
     for i in range(len(s)):
         sos += str(s[i]) + " "
     print(sos)
+    
+# funzione per fancy output
+def fancy_output(s):
+    sos = ""
+    for i in range(len(s)):
+        sos += str(s[i]) + " "
+    return sos
 
 ################################################################################################################################
 # PROGRAMMA
@@ -88,10 +96,12 @@ for i in range(len(bands)):
 # output e conversione in esadecimale
 print("Ecco il numero in binario: ")
 print(bins)
+f_bins = bins
 print("")
 print("Ecco il numero in esadecimale: ")
 bins = binToHexa(str(bins))
 print(bins)
+h_bins = bins
 print("")
 
 ################################################################################################################################
@@ -126,6 +136,7 @@ coppie.append(sos) # completo la stringa
 # output
 print("Coppie:")
 fancy_print(coppie)
+f_coppie = coppie
 print("")
 
 # inverto l'array
@@ -135,3 +146,26 @@ coppie = coppie[::-1]
 print("Coppie invertite:")
 fancy_print(coppie)
 print("")
+
+# output su file con timestamp
+
+print(os.path.exists("output/"))
+fname = 'output/output_combo_%s.txt'%datetime.now().strftime('%d-%m-%Y_%H-%M-%S')
+f = open(fname, 'x')
+
+f.write("Ecco le bande selezionate:\n")
+f.write(fancy_output(bands))
+f.write("\n")
+f.write("Ecco il numero in binario:\n")
+f.write(fancy_output(str(f_bins)))
+f.write("\n")
+f.write("Ecco il numero in esadecimale:\n")
+f.write(fancy_output(str(h_bins)))
+f.write("\n")
+f.write("Coppie:\n")
+f.write(fancy_output(f_coppie))
+f.write("\n")
+f.write("Coppie invertite:\n")
+f.write(fancy_output(coppie))
+
+f.close()
