@@ -44,7 +44,13 @@ band_7  = "0000000000000000000000000000000000000000000000000000000001000000"
 band_20 = "0000000000000000000000000000000000000000000010000000000000000000"
 band_38 = "0000000000000000000000000010000000000000000000000000000000000000"
 band_41 = "0000000000000000000000001000000000000000000000000000000000000000"
-blank   = "00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000"
+blank   = "0000000000000000000000000000000000000000000000000000000000000000"
+bande = []
+for i in range(1, 64):
+    band = blank
+    band = band[:i-1]+"1"+band[i+1:]
+    bande.append(band)
+bande = bande[::-1]
 
 # Input
 bands = []
@@ -72,6 +78,11 @@ print("Ecco le bande selezionate:")
 fancy_print(bands)
 print("")
 
+# OUTPUT TEST
+#for i in range(len(bande)):
+#    print(bande[i])
+#print("")
+
 ################################################################################################################################
 # Step 1: Conversione in esadecimale
 ################################################################################################################################
@@ -79,19 +90,7 @@ print("")
 # formo la stringa in binario
 bins = 0
 for i in range(len(bands)):
-    match(bands[i]):
-        case 1:
-            bins += int(band_1)
-        case 3:
-            bins += int(band_3)
-        case 7:
-            bins += int(band_7)
-        case 20:
-            bins += int(band_20)
-        case 38:
-            bins += int(band_38)
-        case 41:
-            bins += int(band_41)
+    bins += int(bande[int(bands[i]-1)])
 
 # output e conversione in esadecimale
 print("Ecco il numero in binario: ")
@@ -149,7 +148,8 @@ print("")
 
 # output su file con timestamp
 
-print(os.path.exists("output/"))
+# TEST ESISTE PATH 
+# print (os.path.exists("output/"))
 fname = 'output/output_combo_%s.txt'%datetime.now().strftime('%d-%m-%Y_%H-%M-%S')
 f = open(fname, 'x')
 
