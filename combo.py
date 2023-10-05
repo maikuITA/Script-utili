@@ -46,8 +46,8 @@ def fancy_output(s):
 
 # TClear in base all'OS
 clear = ""
-if sys.platform == "linux": clear = "clear"
-else: clear = "cls"
+if sys.platform == "windows": clear = "cls"
+else: clear = "clear"
 
 # Input
 input_bande = []
