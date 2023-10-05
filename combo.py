@@ -78,13 +78,12 @@ for i in range(len(input_bande)):
 
 # OUTPUT TEST
 os.system('clear')
-print("Ecco le input_bande selezionate:")
+print("Ecco le bande selezionate:")
 fancy_print(input_bande)
 print("")
 
-print("Ecco le input_bande selezionate:")
+print("Codifica...")
 fancy_print_enter(bande)
-print("")
 
 ################################################################################################################################
 # Step 1: Conversione in esadecimale
@@ -146,27 +145,24 @@ fancy_print(coppie)
 print("")
 
 # output su file con timestamp
-
-# TEST ESISTE PATH 
-# print (os.path.exists("output/"))
 fname = 'output/output_combo_%s.txt'%datetime.now().strftime('%d-%m-%Y_%H-%M-%S')
-f = open(fname, 'x')
-
-f.write("Ecco le input_bande selezionate:\n")
-f.write(fancy_output(bande))
-f.write("\n")
-f.write("Ecco il numero in binario:\n")
-f.write(fancy_output(str(f_bins)))
-f.write("\n")
-f.write("Ecco il numero in esadecimale:\n")
-f.write(fancy_output(str(h_bins)))
-f.write("\n")
-f.write("Coppie:\n")
-f.write(fancy_output(f_coppie))
-f.write("\n")
-f.write("Coppie invertite:\n")
-f.write(fancy_output(coppie))
-
-f.close()
-
-print("File .txt creato con successo.")
+try:
+    f = open(fname, 'x')
+    f.write("Ecco le input_bande selezionate:\n")
+    f.write(fancy_output(bande))
+    f.write("\n")
+    f.write("Ecco il numero in binario:\n")
+    f.write(fancy_output(str(f_bins)))
+    f.write("\n")
+    f.write("Ecco il numero in esadecimale:\n")
+    f.write(fancy_output(str(h_bins)))
+    f.write("\n")
+    f.write("Coppie:\n")
+    f.write(fancy_output(f_coppie))
+    f.write("\n")
+    f.write("Coppie invertite:\n")
+    f.write(fancy_output(coppie))
+    f.close()
+    print("File .txt creato con successo ")
+except:
+    print("Errore nella creazione del file .txt")
