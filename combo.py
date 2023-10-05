@@ -44,7 +44,7 @@ def fancy_output(s):
 # PROGRAMMA
 ################################################################################################################################
 
-# Tipo sistema
+# TClear in base all'OS
 clear = ""
 if sys.platform == "linux": clear = "clear"
 else: clear = "cls"
@@ -64,7 +64,7 @@ while True:
     except ValueError:
         break
 
-# Lista delle input_bande supportate
+# Lista delle bande supportate in base all'input_bande
 bande = []
 for i in range(len(input_bande)):
     foo_band = ""
@@ -104,7 +104,7 @@ h_bins = bins
 print("")
 
 ################################################################################################################################
-# Step 2: Formazione delle coppie e inversione della stringa; output su file con timestamp
+# Step 2: Formazione delle coppie e inversione della stringa
 ################################################################################################################################
 
 # variabili
@@ -141,6 +141,10 @@ coppie = coppie[::-1]
 print("Coppie invertite:")
 fancy_print(coppie)
 print("")
+
+################################################################################################################################
+# Step 3: Output su file con timestamp
+################################################################################################################################
 
 # output su file con timestamp
 fname = 'output/output_combo_%s.txt'%datetime.now().strftime('%d-%m-%Y_%H-%M-%S')
