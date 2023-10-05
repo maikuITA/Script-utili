@@ -64,6 +64,8 @@ while True:
     except ValueError:
         break
 
+input_bande.sort()
+
 # Lista delle bande supportate in base all'input_bande
 bande = []
 for i in range(len(input_bande)):
@@ -78,7 +80,6 @@ for i in range(len(input_bande)):
 os.system(clear)
 print("Ecco le bande selezionate:")
 fancy_print(input_bande)
-#bande = bande.sort()
 print("")
 
 print("Codifica...")
@@ -147,11 +148,16 @@ print("")
 # Step 3: Output su file con timestamp
 ################################################################################################################################
 
+# FILE TXT
+
 # output su file con timestamp
 fname = 'output/output_combo_%s.txt'%datetime.now().strftime('%d-%m-%Y_%H-%M-%S')
 try:
     f = open(fname, 'x')
     f.write("Ecco le input_bande selezionate:\n")
+    f.write(fancy_output(input_bande))
+    f.write("\n")
+    f.write("Ecco le bande codificate:\n")
     f.write(fancy_output(bande))
     f.write("\n")
     f.write("Ecco il numero in binario:\n")
@@ -166,6 +172,9 @@ try:
     f.write("Coppie invertite:\n")
     f.write(fancy_output(coppie))
     f.close()
-    print("File .txt creato con successo ")
+    print("File .txt creato con successo")
 except:
     print("Errore nella creazione del file .txt")
+
+# FILE BIN
+
