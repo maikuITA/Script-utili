@@ -50,8 +50,6 @@ raw = 0
 cbk = 0
 os.system('clear')
 while True:
-    if cbk > 1:
-        break
     try:
         raw = int(input('Inserisci il numero della banda: '))
         print("")
@@ -59,14 +57,9 @@ while True:
         input_bande.append(raw)
         os.system('clear')
     except ValueError:
-        os.system('clear')
-        print('Inserisci un int.')
-        print("(invio di nuovo per uscire) - (inserisci un int per andare avanti)")
-        print("")
-        cbk += 1
+        break
 
 # Lista delle input_bande supportate
-blank = "0000000000000000000000000000000000000000000000000000000000000000"
 bande = []
 for i in range(len(input_bande)):
     foo_band = ""
