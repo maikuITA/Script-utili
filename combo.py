@@ -2,8 +2,9 @@
 # IMPORT
 ################################################################################################################################
 
-import os, sys
+import os, sys, codecs
 from datetime import datetime
+from binascii import hexlify, unhexlify
 
 ################################################################################################################################
 # FUNZIONI
@@ -39,6 +40,18 @@ def fancy_output(s):
     for i in range(len(s)):
         sos += str(s[i]) + " "
     return sos
+
+# funzione per output in hex
+def hex2file(input_file, file):
+    f = open(file, 'wb')
+    q = ''
+    for x in range(len(input_file)):
+        q += input_file[x]
+    print(q)
+    arr = bytes(q, 'utf-8')
+    print(arr)
+    f.write(codecs.encode(q.encode(), 'hex'))
+    f.close()
 
 ################################################################################################################################
 # PROGRAMMA
@@ -177,4 +190,6 @@ except:
     print("Errore nella creazione del file .txt")
 
 # FILE BIN
-
+ 
+hname = 'output/hex_combo_%s'%datetime.now().strftime('%d-%m-%Y_%H-%M-%S')
+hex2file(coppie, hname)
