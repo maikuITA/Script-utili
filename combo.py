@@ -25,6 +25,13 @@ def fancy_print(s):
     for i in range(len(s)):
         sos += str(s[i]) + " "
     print(sos)
+
+# funzione per fancy print con format accapo
+def fancy_print_enter(s):
+    sos = ""
+    for i in range(len(s)):
+        sos += str(s[i]) + "\n"
+    print(sos)
     
 # funzione per fancy output
 def fancy_output(s):
@@ -37,26 +44,11 @@ def fancy_output(s):
 # PROGRAMMA
 ################################################################################################################################
 
-# Lista delle bande supportate
-band_1  = "0000000000000000000000000000000000000000000000000000000000000001"
-band_3  = "0000000000000000000000000000000000000000000000000000000000000100"
-band_7  = "0000000000000000000000000000000000000000000000000000000001000000"
-band_20 = "0000000000000000000000000000000000000000000010000000000000000000"
-band_38 = "0000000000000000000000000010000000000000000000000000000000000000"
-band_41 = "0000000000000000000000001000000000000000000000000000000000000000"
-blank   = "0000000000000000000000000000000000000000000000000000000000000000"
-bande = []
-for i in range(1, 64):
-    band = blank
-    band = band[:i-1]+"1"+band[i+1:]
-    bande.append(band)
-bande = bande[::-1]
-
 # Input
-bands = []
+input_bande = []
 raw = 0
 cbk = 0
-os.system('cls')
+os.system('clear')
 while True:
     if cbk > 1:
         break
@@ -64,24 +56,35 @@ while True:
         raw = int(input('Inserisci il numero della banda: '))
         print("")
         cbk = 0
-        bands.append(raw)
-        os.system('cls')
+        input_bande.append(raw)
+        os.system('clear')
     except ValueError:
-        os.system('cls')
+        os.system('clear')
         print('Inserisci un int.')
         print("(invio di nuovo per uscire) - (inserisci un int per andare avanti)")
         print("")
         cbk += 1
 
-os.system('cls')
-print("Ecco le bande selezionate:")
-fancy_print(bands)
-print("")
+# Lista delle input_bande supportate
+blank = "0000000000000000000000000000000000000000000000000000000000000000"
+bande = []
+for i in range(len(input_bande)):
+    foo_band = ""
+    foo_band += (int(input_bande[i])-1) * "0"
+    foo_band += "1"
+    foo_band += (64-len(foo_band)) * "0"
+    foo_band = foo_band[::-1]
+    bande.append(foo_band)
 
 # OUTPUT TEST
-#for i in range(len(bande)):
-#    print(bande[i])
-#print("")
+os.system('clear')
+print("Ecco le input_bande selezionate:")
+fancy_print(input_bande)
+print("")
+
+print("Ecco le input_bande selezionate:")
+fancy_print_enter(bande)
+print("")
 
 ################################################################################################################################
 # Step 1: Conversione in esadecimale
@@ -89,8 +92,8 @@ print("")
 
 # formo la stringa in binario
 bins = 0
-for i in range(len(bands)):
-    bins += int(bande[int(bands[i]-1)])
+for i in range(len(bande)):
+    bins += int(bande[i])
 
 # output e conversione in esadecimale
 print("Ecco il numero in binario: ")
@@ -126,10 +129,6 @@ for i in range(len(bins)):
     else:
         sos += str(bins[i])
         count += 1
-    #TESTING
-    #print("i: " + str(i))
-    #print("count: " + str(count))
-    #print("sos: " + str(sos))
 coppie.append(sos) # completo la stringa
 
 # output
@@ -153,8 +152,8 @@ print("")
 fname = 'output/output_combo_%s.txt'%datetime.now().strftime('%d-%m-%Y_%H-%M-%S')
 f = open(fname, 'x')
 
-f.write("Ecco le bande selezionate:\n")
-f.write(fancy_output(bands))
+f.write("Ecco le input_bande selezionate:\n")
+f.write(fancy_output(bande))
 f.write("\n")
 f.write("Ecco il numero in binario:\n")
 f.write(fancy_output(str(f_bins)))
