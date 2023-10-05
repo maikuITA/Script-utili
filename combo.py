@@ -2,7 +2,7 @@
 # IMPORT
 ################################################################################################################################
 
-import os
+import os, sys
 from datetime import datetime
 
 ################################################################################################################################
@@ -44,18 +44,23 @@ def fancy_output(s):
 # PROGRAMMA
 ################################################################################################################################
 
+# Tipo sistema
+clear = ""
+if sys.platform == "linux": clear = "clear"
+else: clear = "cls"
+
 # Input
 input_bande = []
 raw = 0
 cbk = 0
-os.system('clear')
+os.system(clear)
 while True:
     try:
         raw = int(input('Inserisci il numero della banda: '))
         print("")
         cbk = 0
         input_bande.append(raw)
-        os.system('clear')
+        os.system(clear)
     except ValueError:
         break
 
@@ -70,7 +75,7 @@ for i in range(len(input_bande)):
     bande.append(foo_band)
 
 # OUTPUT TEST
-os.system('clear')
+os.system(clear)
 print("Ecco le bande selezionate:")
 fancy_print(input_bande)
 print("")
