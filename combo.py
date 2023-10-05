@@ -168,3 +168,5 @@ f.write("Coppie invertite:\n")
 f.write(fancy_output(coppie))
 
 f.close()
+
+print("File .txt creato con successo.")
