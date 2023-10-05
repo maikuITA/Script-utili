@@ -27,10 +27,10 @@ def fancy_print(s):
     print(sos)
 
 # funzione per fancy print con format accapo
-def fancy_print_enter(s):
+def fancy_print_enter(s, input_bande):
     sos = ""
     for i in range(len(s)):
-        sos += str(s[i]) + "\n"
+        sos += "B" + str(input_bande[i]) + " = " + str(s[i]) + "\n"
     print(sos)
     
 # funzione per fancy output
@@ -78,10 +78,11 @@ for i in range(len(input_bande)):
 os.system(clear)
 print("Ecco le bande selezionate:")
 fancy_print(input_bande)
+#bande = bande.sort()
 print("")
 
 print("Codifica...")
-fancy_print_enter(bande)
+fancy_print_enter(bande, input_bande)
 
 ################################################################################################################################
 # Step 1: Conversione in esadecimale
