@@ -57,7 +57,7 @@ def hex2file(input_file, file):
 # PROGRAMMA
 ################################################################################################################################
 
-# TClear in base all'OS
+# Clear in base all'OS
 clear = ""
 if sys.platform == "windows": clear = "cls"
 else: clear = "clear"
